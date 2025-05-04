@@ -29,23 +29,23 @@ A full-featured Blog Web Application built with **Django**, featuring **admin an
 
 ## 📸 Screenshots
 
-### 🏠 Home Page
+## 📸 Screenshots
 
-![Home Page](https://drive.google.com/file/d/1AwxBKXvX9GkFKmHNpB2OMEjbRUuufSzj/view?usp=sharing)
+### 🏠 Home Page
+![Home Page](https://drive.google.com/uc?export=view&id=1AwxBKXvX9GkFKmHNpB2OMEjbRUuufSzj)
 
 ### 🔐 Login Page
-
-![Login Page](https://drive.google.com/file/d/1wnRm53pbOXpBpVBrMp38dmJfeyiwFj1l/view?usp=sharing)
+![Login Page](https://drive.google.com/uc?export=view&id=1wnRm53pbOXpBpVBrMp38dmJfeyiwFj1l)
 
 ### ✍️ Register
-![Register](https://drive.google.com/file/d/13wqyxO0OpAODdnZMtQl_McsCC55YUhjQ/view?usp=sharing)
+![Register](https://drive.google.com/uc?export=view&id=13wqyxO0OpAODdnZMtQl_McsCC55YUhjQ)
 
 ### ✍️ Post Detail
+![Post Detail](https://drive.google.com/uc?export=view&id=13wqyxO0OpAODdnZMtQl_McsCC55YUhjQ)
 
-![Post Detail](https://drive.google.com/file/d/13wqyxO0OpAODdnZMtQl_McsCC55YUhjQ/view?usp=sharing)
+### ➕ Add Post
+![Add Post](https://drive.google.com/uc?export=view&id=1YNT-41EmheScdueUOwTWGnjyaeCp40OV)
 
-### + Add Post
-![Add Post](https://drive.google.com/file/d/1YNT-41EmheScdueUOwTWGnjyaeCp40OV/view?usp=sharing)
 
 
 ---

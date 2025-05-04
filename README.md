@@ -41,10 +41,10 @@ A full-featured Blog Web Application built with **Django**, featuring **admin an
 ![Register](https://drive.google.com/uc?export=view&id=13wqyxO0OpAODdnZMtQl_McsCC55YUhjQ)
 
 ### ✍️ Post Detail
-![Post Detail](https://drive.google.com/uc?export=view&id=13wqyxO0OpAODdnZMtQl_McsCC55YUhjQ)
+![Post Detail](https://drive.google.com/uc?export=view&id=1YNT-41EmheScdueUOwTWGnjyaeCp40OV)
 
 ### ➕ Add Post
-![Add Post](https://drive.google.com/uc?export=view&id=1YNT-41EmheScdueUOwTWGnjyaeCp40OV)
+![Add Post](https://drive.google.com/file/d/1KDXzDuzmqDagW92frXEbKxLDrT6MUz3i/view?usp=drive_link)
 
 
 

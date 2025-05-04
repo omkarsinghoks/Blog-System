@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+{% block content-navbar %} <!-- Add a block name here -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+          <a href="/about">About</a>
+          <a href="/add_post">Add Post</a>
+          <a href="/admin">Admin</a>
+          <a href="{% url 'logout' %}">Logout</a>
+        </div>
+      </nav>
+
+</body>
+
+{% endblock content-navbar %} <!-- Close the block properly -->
+</html>

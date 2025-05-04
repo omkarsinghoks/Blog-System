@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Blog</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+      .about-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .Border-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 8px;
+        width: 70%;
+        margin-left: 15%;
+      }
+      .messages {
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    
+    .messages.success{
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+    .messages-bg
+    {
+        
+        padding: 20px;
+        color:#155724;
+        font-size: 14px;
+        max-width: auto;
+        margin: 10px;
+        font-family: Arial, sans-serif;
+    }
+    
+    .messages.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+      .Border-container button {
+        margin-top: 10px;
+        margin-left: 10px;
+        background-color: #2e7d32;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .post {
+        border-bottom: 2px solid #eee;
+        padding: 15px 0;
+      }
+      .post:last-child {
+        border-bottom: none;
+      }
+      h1 {
+        text-align: center;
+        color: #4caf50;
+      }
+      h2 {
+        color: #2e7d32;
+      }
+      small {
+        color: #757575;
+      }
+      .add-post-submit-button {
+        margin-top: 10px;
+        margin-left: 10px;
+        background-color: #2e7d32;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .nav-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        padding: 10px;
+        margin-bottom: 20px;
+        background-color: #4caf50;
+      }
+      .edit-delet-button {
+        display: flex;
+        flex-direction: row;
+      }
+      
+
+      .nav-container a {
+        color: white;
+        text-decoration: none;
+      }
+
+      .post-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 2px solid #ddd;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .post-heading {
+        text-align: center;
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .post-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .submit-button {
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .logout-button {
+        background-color: #2e7d32;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        padding: 3px;
+        background-color: #4caf50;
+        color: #fff;
+        border: solid white;
+      }
+
+      .submit-button:hover {
+        background-color: #45a049;
+      }
+      /* Styling for the Add Post container */
+      .add-post-container {
+        background-color: #f9f9f9;
+        padding: 20px 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 30px auto;
+        font-family: Arial, sans-serif;
+      }
+
+      .add-post-container h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      /* Styling for the form */
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      form input[type="text"],
+      form textarea,
+      form input[type="file"],
+      form select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        box-sizing: border-box;
+      }
+
+      form textarea {
+        resize: vertical;
+        height: 100px;
+      }
+
+      /* Styling for the submit button */
+      .submit-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .submit-button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Styling for the logout button */
+      .logout-button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .logout-button:hover {
+        background-color: #a71d2a;
+      }
+
+     /* Styling for the message container */
+.message-container-delete {
+  margin-top: 10px; /* Space below the nav bar */
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Styling for the message list */
+.message-list-delete {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styling for individual message items */
+.message-item-delete {
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Success message styling */
+.message-item-delete.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Error message styling */
+.message-item-delete.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Info message styling */
+.message-item-delete.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+/* Warning message styling */
+.message-item-delete.warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+
+.content-container {
+  max-height: 100px; /* Set the fixed height */
+  overflow: hidden; /* Hide overflowing content */
+  transition: max-height 0.3s ease; /* Smooth transition */
+}
+
+.content-container.expanded {
+  max-height: none; /* Remove height restriction */
+}
+
+/* Style for the "Read More" button */
+.read-more-btn {
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.read-more-btn:hover {
+  background-color: #0056b3;
+}
+.edit-delet-button button {
+  background-color: #007bff; /* Primary blue color */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  padding: 8px 12px; /* Add padding for better spacing */
+  margin-right: 10px; /* Add spacing between buttons */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 14px; /* Font size */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+  margin-top:20px;
+}
+
+.edit-delet-button button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+.nav-container a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+.main-container {
+  margin: 20px 10%;
+}
+
+.post-heading {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.no-posts-message {
+  text-align: center;
+  color: #999;
+}
+
+.post-card {
+  background-color: #ffffff;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.post-card:hover {
+  transform: scale(1.02);
+}
+
+
+
+.read-more-btn,
+.edit-delete-button button {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.edit-delete-button {
+  display: flex;
+  gap: 10px;
+}
+
+#messages {
+  background-color: #e6f7ff;
+  color: #00529B;
+  padding: 10px;
+  border: 1px solid #b3e0ff;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+/* Navbar Styles */
+.navbar {
+  /* Dark blue background for a sleek look */
+  color: #ffffff;              /* White text for contrast */
+  
+                /* Ensures links and buttons align properly */
+      /* Vertically centers items */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.nav-container {
+  display: flex;
+  justify-content:space-between;
+   /* Spacing between links */
+   width:100%;
+
+}
+
+.nav-container a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 5px; /* Smooth rounded corners */
+  transition: background-color 0.3s ease;
+}
+
+.nav-container a:hover {
+  background-color: #34495E; /* Slightly lighter on hover */
+}
+
+.logout-button {
+  background-color: #e74c3c;  /* Red for logout to stand out */
+  color: #ffffff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;  /* Darker red on hover for better feedback */
+}
+/* General Layout */
+.page-content {
+  margin: 0 10%; /* 10% margin on left and right */
+  padding: 20px 0;
+  background-color: #f9f9f9; /* Light background for better readability */
+}
+
+/* Navigation Bar */
+.nav-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: #4CAF50;  /* Clean green shade */
+  padding: 10px 0;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-container a {
+  color: #fff;  
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.nav-container a:hover {
+  background-color: #45a049; 
+}
+
+/* Post Container */
+.text-open-close-container {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.text-open-close-container h2 {
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.content-container {
+  margin-top: 10px;
+  color: #555;
+}
+
+img {
+  display: block;
+  margin: 10px auto; /* Center images */
+  border-radius: 8px;
+}
+
+/* Read More Button */
+.read-more-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.read-more-btn:hover {
+  background-color: #45a049;
+}
+
+
+.post-image
+{
+   height: 300px;
+   width:300px;
+   display:none;
+}
+  
+   
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        {% if  user.is_authenticated %}
+          
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/add_post">Add Post</a>
+          {% if request.user.is_superuser %}
+            <a href="/admin">Admin</a>
+          {% endif %}
+
+          <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="logout-button" type="submit">Logout</button>
+          </form>
+        {% else %}
+          
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/login">Login</a>
+          <a href="/register">Register</a>
+        {% endif %}
+      </div>
+    </nav>
+
+    {% block content %} {% endblock %}
+
+  </body>
+  <script>
+    function toggleContent(button) {
+      // Find the nearest parent container and then the content container inside it
+      const parentContainer = button.closest('.text-open-close-container'); // Get the parent container
+      const contentContainer = parentContainer.querySelector('.content-container'); // Find the content container
+      const imageSection = parentContainer.querySelector('.post-image'); // Find the image section within the same container
+  
+      if (contentContainer.classList.contains('expanded')) {
+          contentContainer.classList.remove('expanded'); // Collapse the content
+          button.textContent = 'Read More'; // Update button text
+          if (imageSection) {
+              imageSection.style.display = 'none'; // Hide the image
+          }
+      } else {
+          contentContainer.classList.add('expanded'); // Expand the content
+          button.textContent = 'Read Less'; // Update button text
+          if (imageSection) {
+              imageSection.style.display = 'inline'; // Show the image
+          }
+      }
+  }
+</script>
+</html>

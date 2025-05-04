@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Navigation Bar -->
+
+
+<div class="main-container"> <!-- Added for better layout control -->
+
+  <div class="delete-outer-container">
+    
+    {% if messages %}
+    <div id="messages">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </div>
+    {% endif %}
+    
+    <h1 class="post-heading">Posts</h1>
+    
+    {% if not posts %}
+    <h1 class="no-posts-message">No Post Found</h1>
+    {% endif %}
+
+    {% for post in posts %}
+    <div class="post-card">
+      <div class="text-open-close-container">
+        <h2>{{ post.title }}</h2>
+        <small>Published on {{ post.published_at | date:"M d, Y" }} by {{ post.author }}</small>
+        <br>
+        <small>Added At {{ post.added_at }}</small>
+        <br>
+        <small>Updated At {{ post.last_updated_at }}</small>
+
+        <div class="content-container">
+          <p class="post-content">{{ post.content }}</p>
+        </div>
+
+        <div>
+          {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+        {% endif %}
+        </div>
+
+        <button class="read-more-btn" onclick="toggleContent(this)">Read More</button>
+      </div>
+
+      {% if post.author == request.user or request.user.is_superuser %}
+      <div class="edit-delete-button">
+        <form method="POST" action="{% url 'delete_post' post.id %}">
+          {% csrf_token %}
+          <button type="submit">Delete</button>
+        </form>
+
+        <a href="{% url 'edit_post' post.id %}">
+          <button type="button">Edit</button>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+</div> <!-- Closing main-container div -->
+
+{% endblock %}

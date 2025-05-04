@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block content %}
+
+
+<div class="add-post-container">
+  <h1>Add New Post</h1>
+  <div class="messages-bg">
+
+  
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+
+  {% endif %}
+</div>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.as_p }}
+    <button class="submit-button" type="submit">Submit</button>
+  </form>
+</div>
+{% endblock %} {% comment %} {% extends 'base.html' %} {% block content %}
+<nav>
+  <div class="nav-container">
+    <a href="/home">Home</a>
+    <a href="/about">About</a>
+    <a href="/add_post">Add Post</a>
+    {% if request.user.is_staff %}
+    <a href="/admin">Admin</a>
+    {% endif %}
+    <form method="POST" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button class="logout-button" type="submit">Logout</button>
+    </form>
+  </div>
+</nav>
+<div class="container">
+  <h1>Add New Post</h1>
+
+  <form method="POST" enctype="multipart/form-data">
+    <!-- Add enctype here -->
+    {% csrf_token %} {{ form.as_p }}
+    <button class="add-post-submit-button" type="submit">Submit</button>
+  </form>
+</div>
+{% endblock %} {% endcomment %}
+
+<!-- filepath: c:\Users\Omkar_Singh\Desktop\Blog_Review_fun\Blog-Project-Class-View-20250321T053847Z-001\Blog-Project-Class-View\blog_project\blog\templates\add_post.html -->

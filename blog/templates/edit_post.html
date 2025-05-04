@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+
+
+
+<div class="post-container">
+
+  <div class="message-container">
+    {% if messages %}
+    <ul class="message-list">
+        {% for message in messages %}
+        <li class="message-item {{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+  <h1 class="post-heading">Edit Post</h1>
+  <form method="POST" class="post-form">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit" class="submit-button">Update</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      /* General styling for the body */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      /* Styling for the login container */
+      .login-container {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+
+      /* Styling for the login title */
+      .login-title {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      /* Styling for the form */
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .login-form input[type="text"],
+      .login-form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        box-sizing: border-box;
+      }
+
+      /* Styling for the submit button */
+      .login-submit-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .login-submit-button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Styling for error or success messages */
+      .messages {
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      .messages.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .messages.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+      .register-link {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 14px;
+      }
+      .popup-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column; /* Stack popups vertically */
+        gap: 10px; /* Add spacing between popups */
+        z-index: 1000;
+    }
+    
+    .popup {
+        display: block;
+        position: relative;
+        background-color: #4CAF50; /* Default success background */
+        color: #ffffff;
+        padding: 15px 20px;
+        border-radius: 6px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        opacity: 1; /* Start fully visible */
+        transition: opacity 0.5s ease; /* Smooth fade-out transition */
+    }
+    
+    .popup.error {
+        background-color: #f44336; /* Error background */
+        color: #ffffff;
+    }
+    
+    .popup.success {
+        background-color: #4CAF50; /* Success background */
+        color: #ffffff;
+    }
+    
+    @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+    ul{
+      display:none;
+
+    }
+    .register-link a{
+       text-decoration:none;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+        <form method="post" class="login-form" novalidate>
+            {% csrf_token %}
+            <h2 class="login-title">Login</h2>
+            {{ form.as_p }}
+            <button type="submit" class="login-submit-button">Login</button>
+            
+        </form>
+        <div class="register-link">
+          <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+      </div>
+        <!-- Popup Message Display -->
+        <div class="popup-container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="popup {% if message.tags == 'error' %}error{% else %}success{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const popups = document.querySelectorAll('.popup');
+            popups.forEach(popup => {
+                popup.style.display = 'block'; // Ensure the popup is visible
+                setTimeout(() => {
+                    popup.style.opacity = '0'; // Start fade-out
+                    setTimeout(() => popup.remove(), 500); // Remove the popup after fade-out
+                }, 10000); // Keep the popup visible for 5 seconds
+            });
+        });
+    </script>
+</body>
+</html>

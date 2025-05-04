@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<nav>
+  <div class="nav-container">
+    {% comment %} <a href="/">Logout</a> {% endcomment %}
+    <a href="">Home</a>
+    <a href="/about1">About</a>
+
+    
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
+     
+  </div>
+</nav>
+
+<h1>All Posts</h1>
+{% if not posts %}
+<h1>No Post Found</h1>
+{% endif %} 
+
+{% for post in posts %}
+<div class="text-open-close-container">
+  <h2>{{ post.title }}</h2>
+  <small>Published on {{ post.published_at | date:"M d, Y" }} by {{ post.author }}</small>
+  <br>
+  <small>Added At {{ post.added_at }}</small>
+  <br>
+  <small>Updated At {{ post.last_updated_at }}</small>
+
+  <div class="content-container">
+      <p class="post-content">{{ post.content }}</p>
+  </div>
+
+  {% if post.image %}
+  <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 40%; height: auto; padding:10px;">
+  {% endif %}
+
+  <button class="read-more-btn" onclick="toggleContent(this)">Read More</button>
+</div>
+</div>
+{% endfor %}
+{% endblock %}
